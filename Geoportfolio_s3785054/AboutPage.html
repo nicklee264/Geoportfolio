@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>About</title>
+	<link rel="stylesheet" href="assignmentcss.css">
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+
+	<div class="pagetitle">
+        <span class="title-ul">About the author</span>
+    </div>
+	<div class="abouttheauthor">
+		<p>As of the year 2022, Nicholas Lee is a final year undergraduate Geospatial Science (BH117) student. He started studying RMIT in 2019 as a first year undergraduate student. A big portion of Nicholas' life has revolved around maps starting from when he played Pok&eacute;mon on his Game Boy Advance and reading a lot of the game guides, all of which involved maps of the individual Routes. When Nicholas took up orienteering as a summer sport in high school from years 2013 to 2018, that's where he learned (the hard way) the importance of being able to read a map to get from one place to another. When Nicholas started studying geography between years 9 to 12 in high school, he began to take an interest in learning more about mapping, specifically the technologies used to obtain map data and the process of how maps are made.</p>
+		<p>The interests Nicholas has in the course is learning about the technologies used behind obtaining spatial data and the creation of maps, hoping to find an occupation associated with satellite imagery, remote sensing and computer based mapping. Nicholas wishes to travel the world to make a map of the landmarks he has travelled..... Along with taking photos with his own mark to prove where he has been.</p>
+		<p>The photo below is an example of his travelling partner to prove that he has been to certain parts of the world.</p>
+	</div>
+	<div class="miniditdiv">
+		<img src="dittochuinjapan.jpg" alt="Dittochu in Japan" class="minidit">
+	</div>
+	<div class="footer">
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+<script> //Code for opening and closing sidebar 
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>

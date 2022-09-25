@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Applied Geospatial Techniques</title> <!--Title of page in browser-->
+	<link rel="stylesheet" href="assignmentcss.css">
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+
+    <!--Title of page-->
+    <div class="pagetitle">
+        <span class="title-ul">Applied Geospatial Techniques</span>
+    </div>
+	<div class="academic-intro">
+		Applied Geospatial Techniques (AGT) is a unique but very practical and interesting subject done in both geospatial science and surveying. The subject uses 
+		knowledge from three different disciplines:
+		<ul>
+			<li>Surveying</li>
+			<li>Geographical Information Systems (GIS)</li>
+			<li>Cartography</li>
+		</ul>
+		<p>
+		For the 2019 version of the course which I completed, the assignment was about the proposal of creating an amphitheatre at Deep Rock Oval located at Yarra Bend Park.
+		The main deliverables of the subject consisted of producing:
+		<ul>
+			<li>Topographic survey map of Deep Rock Oval</li>
+			<li>3D generated scene of the proposed amphitheatre</li>
+			<li>Amphitheatre and Pathway plan of the proposed site</li>
+			<li>Final map of the amphitheatre proposal</li>
+		</ul>
+		</p>
+		<p>
+			The topographic survey map was created using surveying data obtained on the field using a total station at Deep Rock Oval, Yarra Bend Park.
+			The topographic map was made using LISCAD.SEE and LISCAD.CAD. The 3D generated scene was created using the ArcGIS suite program ArcScene while the raw data was
+			modified in ArcMap. The proposed pathway was created using ArcMap by using the GIS program to generate the pathway based on slope angle and the amphitheatre
+			based on z-values. The final map used Adobe Illustrator to create the map along with ArcMap for exporting the 2D amphitheathre image and ArcScene for 
+			exporting the image of the 3D scene.
+		</p>
+		<p>
+			<b>Note:</b> If map display is too small, right-click the image and 'Open in new tab' to allow zooming of the map.
+		</p>
+	</div>	
+
+	<div class="bar"><h3>Topographic survey map (Surveying component)</h3></div>
+	<img src="Academic-Gallery/AGT-CAd.png" class="agt-survey">
+	<div class="bar"><h3>3D Amphitheatre and pathway plan (GIS component)</h3></div>
+	<img src="Academic-Gallery/AGT-3D-Amphitheatre.png" class="agt-gis">
+	<img src="Academic-Gallery/AGT-Amphitheatre.jpg" class="agt-gis">
+	<div class="bar"><h3>Final map of proposal(Cartography component)</h3></div>
+	<img src="Academic-Gallery/AGT-Map.png" class="agt-carto">
+    <div class="footer"> <!--Start of footer-->
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div> <!--End of footer-->
+</body>
+<script> //Code for opening and closing sidebar 
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>

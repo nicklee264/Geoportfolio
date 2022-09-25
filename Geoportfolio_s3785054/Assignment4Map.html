@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<meta charset="utf-8">
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css" type="text/css"/>
+<title>Urban Heat Web GIS Application</title>
+<link rel="stylesheet" href="assignmentcss.css"/>
+</head>
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+
+	<div class="pagetitle">
+        <span class="title-ul">Web GIS Application of Urban Heat and Tree Cover maps</span>
+    </div>
+
+	<div class="bar">
+		<h3>Click on one of the button to activate a map!</h3>
+	</div>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'uhi2018')" id="defaultOpen">Urban Heat Island 2018 Map</button>
+	</div>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'treeregion')">Urban Tree Cover Percentage by Regional Average 2018 Map</button>
+	</div>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'hvi2014')">Urban Heat Vulnerability Index 2014 Map</button>
+	</div>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'hvi2018')">Urban Heat Vulnerability Index 2018 Map</button>
+	</div>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'treelga')">Urban Tree Cover Percentage by LGA 2018 Map</button>
+	</div>
+	<div class="tab">
+		<button class="tablinks"><a href="#glossary" style="text-decoration: none; color:black;">Click here for quick access to the glossary</a></button>
+	</div>
+	<div id="uhi2018" class="tabcontent">
+		<div class="mapcontainer" id="uhicontainer"></div>
+		<div class="map-overlay features" id="uhifeatures">
+			<h2>Urban Heat Island 2018</h2>
+			<div id="pd"><p>Hover over a part of Melbourne!</p></div>
+		</div>
+		<div class="map-overlay legend" id="uhilegend"><h3>Legend</h3></div>
+	</div>	
+	<div id="hvi2014" class="tabcontent">
+		<div class="mapcontainer" id="hvi14container"></div>
+		<div class="map-overlay features" id="hvi14features">
+			<h2>Heat Vulnerability Index(HVI) 2014</h2><div id="hvi2014pd">
+			<p>Hover over a part of Melbourne!</p></div>
+		</div>
+		<div class="map-overlay legend" id="hvi14legend"><h3>Legend</h3></div>
+	</div>
+	<div id="hvi2018" class="tabcontent">
+		<div class="mapcontainer" id="hvi18container"></div>
+		<div class="map-overlay features" id="hvi18features"><h2>Heat Vulnerability Index(HVI) 2018</h2><div id="hvi2018pd"><p>Hover over a part of Melbourne!</p></div></div>
+		<div class="map-overlay legend" id="hvi18legend"><h3>Legend</h3></div>
+	</div>
+	<div id="treelga" class="tabcontent">
+		<div class="mapcontainer" id="treemapcontainer"></div>
+		<div class="map-overlay features" id="treelgafeatures"><h2>Urban Tree Cover Percentage 2018</h2><div id="treelgapd"><p>Hover over a part of Melbourne!</p></div></div>
+		<div class="map-overlay legend" id="treelgalegend"><h3>Legend</h3></div>
+	</div>
+	<div id="treeregion" class="tabcontent">
+		<div class="mapcontainer" id="regionaltreecovercontainer"></div>
+		<div class="map-overlay features" id="treeregionalfeatures"><h2>Urban Regional Tree Cover Percentage 2018</h2><div id="treeregionalpd"><p>Hover over a part of Melbourne!</p></div></div>
+		<div class="map-overlay legend" id="treeregionallegend"><h3>Legend</h3></div>
+	</div>
+	<!--<div id="hvicomparison" class="tabcontent">
+		<div class="mapcontainer comparemap" id="hvicomparison2014"></div>
+		<div class="mapcontainer comparemap" id="hvicomparison2018"></div>
+		<div class="map-overlay features" id="hvicomparisonfeatures"><h2>Heat Vulnerability Index Comparison</h2>
+		<div id="hvicomparisonpd"><p>Hover over a part of Melbourne!</p></div></div>
+		<div class="map-overlay legend" id="hvicomparisonlegend"><h3>Legend</h3></div>
+	</div>-->
+	
+<script>//Urban Heat Island 2018 Map
+	mapboxgl.accessToken = 'pk.eyJ1Ijoibmlja2xlZTI2NCIsImEiOiJja2V0ajU3N2UxZm51MnB0OHkzYXZ3b3MwIn0.Vk7pLn1hE7XgzqZEPxk4mQ';
+	var uhimap = new mapboxgl.Map({
+		container: 'uhicontainer', // container id
+		style: "mapbox://styles/nicklee264/ckfmpzblu51u119p57mb2bl99",
+	});
+	uhimap.on('load', function() {
+		var layers = ['4-6<span>&#176;</span>C', '6-8<span>&#176;</span>C', '8-10<span>&#176;</span>C', '>10<span>&#176;</span>C'];
+		var colors = ['#FFFF00', '#ffa600', '#db143c', '#8b0000'];
+		for (i = 0; i < layers.length; i++) {
+		  var layer = layers[i];
+		  var color = colors[i];
+		  var item = document.createElement('div');
+		  var key = document.createElement('span');
+		  key.className = 'legend-key';
+		  key.style.backgroundColor = color;
+		  var value = document.createElement('span');
+		  value.innerHTML = layer;
+		  item.appendChild(key);
+		  item.appendChild(value);
+		  uhilegend.appendChild(item);
+		}
+	});
+	uhimap.on('mousemove', function(e) {
+		var uhi = uhimap.queryRenderedFeatures(e.point, {
+			layers: ['2018UHI'] //Name of layer depends on layer name being used in style
+	});
+	if (uhi[0].properties.UHI2018DEGCEL > 0) {
+		document.getElementById('pd').innerHTML = '<h3><strong>UHI reading of ' + uhi[0].properties.ABB_NAME + '</strong></h3><p><strong><em>' + '</strong> The average urban heat island reading of '+ uhi[0].properties.ABB_NAME + ' is ' + uhi[0].properties.UHI2018DEGCEL + '<span>&#176;</span>C.</em></p>';
+	  } else {
+		document.getElementById('pd').innerHTML = '<p>Hover over a part of Melbourne!</p>';
+	  }
+	});
+	uhimap.addControl(new mapboxgl.NavigationControl());
+	uhimap.getCanvas().style.cursor = 'default';
+</script>
+<script>//HVI2014 Map
+	var hvi2014map = new mapboxgl.Map({
+			container: 'hvi14container', // container id
+			style: "mapbox://styles/nicklee264/ckfmpz6iw00kk19t6530wm70m",
+		}); 
+		hvi2014map.on('load', function() {
+		var layers = ['1', '2', '3', '4', '5'];
+		var colors = ['#ffb8b8', '#ff0000', '#bd0000', '#800000','#420000'];
+		for (i = 0; i < layers.length; i++) {
+		  var layer = layers[i];
+		  var color = colors[i];
+		  var item = document.createElement('div');
+		  var key = document.createElement('span');
+		  key.className = 'legend-key';
+		  key.style.backgroundColor = color;
+		  var value = document.createElement('span');
+		  value.innerHTML = layer;
+		  item.appendChild(key);
+		  item.appendChild(value);
+		  hvi14legend.appendChild(item);
+		}
+	});
+	hvi2014map.on('mousemove', function(e) {
+		var hvi2014 = hvi2014map.queryRenderedFeatures(e.point, {
+			layers: ['HVI2014'] //Name of layer depends on layer name being used in style
+	});
+	if (hvi2014[0].properties.UHI2018DEGCEL > 0) {
+		document.getElementById('hvi2014pd').innerHTML = '<h3><strong>2014 HVI reading of ' + hvi2014[0].properties.ABB_NAME + '</strong></h3><p><strong><em>' + '</strong> The heat vulnerability index reading of '+ hvi2014[0].properties.ABB_NAME + ' in 2014 is ' + hvi2014[0].properties.HVI2014 + '.</em></p>';
+	  } else {
+		document.getElementById('hvi2014pd').innerHTML = '<p>Hover over a part of Melbourne!</p>';
+	  }
+	});
+	hvi2014map.addControl(new mapboxgl.NavigationControl());
+	hvi2014map.getCanvas().style.cursor = 'default';
+</script>
+<script>//HVI2018 Map
+	var hvi2018map = new mapboxgl.Map({
+			container: 'hvi18container', // container id
+			style: "mapbox://styles/nicklee264/ckfmn41bz68nn19qjy3zlrxgo",
+		}); 
+		hvi2018map.on('load', function() {
+		var layers = ['1', '2', '3', '4', '5'];
+		var colors = ['#ffb8b8', '#ff0000', '#bd0000', '#800000','#420000'];
+		for (i = 0; i < layers.length; i++) {
+		  var layer = layers[i];
+		  var color = colors[i];
+		  var item = document.createElement('div');
+		  var key = document.createElement('span');
+		  key.className = 'legend-key';
+		  key.style.backgroundColor = color;
+		  var value = document.createElement('span');
+		  value.innerHTML = layer;
+		  item.appendChild(key);
+		  item.appendChild(value);
+		  hvi18legend.appendChild(item);
+		}
+	});
+	hvi2018map.on('mousemove', function(e) {
+		var hvi2018 = hvi2018map.queryRenderedFeatures(e.point, {
+			layers: ['HVI2018'] //Name of layer depends on layer name being used in style
+	});
+	if (hvi2018[0].properties.HVI2018 > 0) {
+		document.getElementById('hvi2018pd').innerHTML = '<h3><strong>2018 HVI reading of ' + hvi2018[0].properties.ABB_NAME + '</strong></h3><p><strong><em>' + '</strong> The heat vulnerability index reading of '+ hvi2018[0].properties.ABB_NAME + ' in 2018 is ' + hvi2018[0].properties.HVI2018 + '.</em></p>';
+	  } else {
+		document.getElementById('hvi2018pd').innerHTML = '<p>Hover over a part of Melbourne!</p>';
+	  }
+	});
+	hvi2018map.addControl(new mapboxgl.NavigationControl());
+	hvi2018map.getCanvas().style.cursor = 'default';
+</script>
+<script>//Tree Cover Percentage 2018
+	var treecovermap = new mapboxgl.Map({
+			container: 'treemapcontainer', // container id
+			style: "mapbox://styles/nicklee264/ckfmpz1as00xl19rwqac0zdis",
+		}); 
+		treecovermap.on('load', function() {
+		var layers = ['<5%', '5-10%', '10-15%', '15-20%', '20-25%', '25-30%', '30-35%','>35%'];
+		var colors = ['#e6ffe6', '#e6fdd9', '#b6f68d', '#0eff00','#1fc600','#089000','#0a5d00','#063b00'];
+		for (i = 0; i < layers.length; i++) {
+		  var layer = layers[i];
+		  var color = colors[i];
+		  var item = document.createElement('div');
+		  var key = document.createElement('span');
+		  key.className = 'legend-key';
+		  key.style.backgroundColor = color;
+		  var value = document.createElement('span');
+		  value.innerHTML = layer;
+		  item.appendChild(key);
+		  item.appendChild(value);
+		  treelgalegend.appendChild(item);
+		}
+	});
+	treecovermap.on('mousemove', function(e) {
+		var treecover = treecovermap.queryRenderedFeatures(e.point, {
+			layers: ['TREECOVERPERCENT2018'] //Name of layer depends on layer name being used in style
+	});
+	if (treecover[0].properties.TREECOVERPERCENT2018 > 0) {
+		document.getElementById('treelgapd').innerHTML = '<h3><strong>2018 Total tree cover(%) of ' + treecover[0].properties.ABB_NAME + '</strong></h3><p><strong><em>' + '</strong> The total tree cover percentage of '+ treecover[0].properties.ABB_NAME + ' in 2018 is ' + treecover[0].properties.TREECOVERPERCENT2018 + '%.</em></p>';
+	  } else {
+		document.getElementById('treelgapd').innerHTML = '<p>Hover over a part of Melbourne!</p>';
+	  }
+	});
+	treecovermap.getCanvas().style.cursor = 'default';
+	treecovermap.addControl(new mapboxgl.NavigationControl());
+</script>
+<script>//Urban Regional Tree Cover 2018  CHANGE ALL WRITTEN IN LGA TO REGION
+	var regionaltreemap = new mapboxgl.Map({
+			container: 'regionaltreecovercontainer', // container id
+			style: "mapbox://styles/nicklee264/ckfmnawlp5aqh19qof0tgjvlr",
+		}); 
+		regionaltreemap.on('load', function() {
+		var layers = ['Western', 'Northern', 'Inner', 'Southern', 'Inner South', 'Eastern'];
+		var colors = ['#d8fdce', '#befc9c', '#1fc600', '#089000','#0a5d00','#063b00'];
+		for (i = 0; i < layers.length; i++) {
+		  var layer = layers[i];
+		  var color = colors[i];
+		  var item = document.createElement('div');
+		  var key = document.createElement('span');
+		  key.className = 'legend-key';
+		  key.style.backgroundColor = color;
+		  var value = document.createElement('span');
+		  value.innerHTML = layer;
+		  item.appendChild(key);
+		  item.appendChild(value);
+		  treeregionallegend.appendChild(item);
+		}
+	});
+	regionaltreemap.on('mousemove', function(e) {
+		var regionaltree = regionaltreemap.queryRenderedFeatures(e.point, {
+			layers: ['URBANREGIONALTREECOVER2018'] //Name of layer depends on layer name being used in style
+	});
+	if (regionaltree[0].properties.URBANREGIONALTREECOVERPERCENT > 0) {
+		document.getElementById('treeregionalpd').innerHTML = '<h3><strong>Total tree cover(%) of ' + regionaltree[0].properties.MELBOURNEREGIONS + ' MELBOURNE in 2018</strong></h3><p><strong><em>' + '</strong> The urban tree cover percentage of the '+ regionaltree[0].properties.MELBOURNEREGIONS + ' region of Melbourne in 2018 is ' + regionaltree[0].properties.URBANREGIONALTREECOVERPERCENT + '%.</em></p>';
+	  } else {
+		document.getElementById('treeregionalpd').innerHTML = '<p>Hover over a part of Melbourne!</p>';
+	  }
+	});
+	regionaltreemap.getCanvas().style.cursor = 'default';
+	regionaltreemap.addControl(new mapboxgl.NavigationControl());
+</script>	
+<!--<script>
+	var beforeMap = new mapboxgl.Map({
+		container: 'hvicomparison2014',
+		style: "mapbox://styles/nicklee264/ckfmpz6iw00kk19t6530wm70m", /*HVI2014 map*/
+	});
+
+	var afterMap = new mapboxgl.Map({
+		container: 'hvicomparison2018',
+		style: "mapbox://styles/nicklee264/ckfmn41bz68nn19qjy3zlrxgo", /*HVI2018 map*/
+	});
+ 
+	// A selector or reference to HTML element
+	var comparecontainer = '#hvicomparison';
+	var comparemap = new mapboxgl.Compare(beforeMap, afterMap, comparecontainer, {
+	});
+</script>-->
+<script>//Buttons
+	function openTab(evt, mapName) {
+	  var i, tabcontent, tablinks;
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	  }
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+	  document.getElementById(mapName).style.display = "block";
+	  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+	<div class="bar"><h3>How to use the map</h3></div>
+	<div class="imaptext">
+		<p>The map above is completely interactive, the coloured tiles of Melbourne being able to display data when the mouse is hovered over it. The data displayed will indicate the area location name and the value depending on the map selected. 
+		</p>
+		<p><b><u>Instructions to using the map:</u></b>
+  			<ul>
+				<li>To zoom out: Either press the minus symbol in the top right corner of the map <u><i>or</i></u> scroll the mouse wheel downwards</li>
+				<li>To zoom in: Press the plus symbol in the top right corner of the map <u><i>or</i></u> scroll the mouse wheel upwards</li>
+				<li>To move around the map: Click and drag the mouse <u><i>or</i></u> click on the map and use the arrow keys to move around the map</li>
+				<li>Interacting with the tiles: Hovering the mouse arrow over a data tile will display the name of the area and a numerical value of said area, depending on which map display is currently active.</li>
+				<li>Changing the map: The grid above the map are buttons that display different maps depending on the selected button. To activate a different map, press one of the buttons above the map and it will display the chosen map.</li>
+  			</ul>
+		</p>
+	</div>
+	<div class="bar"><h3>Embedded dashboard (full screen version available in the link at the bottom of the page)</h3></div>
+	<div class="dashboard">
+		<iframe width="1400" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="https://arcg.is/HHCWD">
+		</iframe>
+	</div>
+	<div class="bar"><h3>About the map</h3></div>
+	<div class="imaptext">
+		<p>Urban Heat Island effect is when an urban area experiences warmer temperatures compares to rural and less-developed urban areas. This effect occurs because the materials used in urban areas such as bricks, concrete and asphalt are dark colours and are efficient at absorbing heat from the sun's energy. This in turn would cause the objects to increase in temperature and when there is a high abundancy of urban structures made of these materials in an area, the collecive temperature of the area would significantly increase because of the higher prescence of urban structures to absorb the energy from the sun.
+		</p>
+		<p>Because of this Urban Heat Island effect, it is very important to monitor not only the prescence and temperature changes of urban areas, but also the prescence of vegetation. This is because vegetation goes through a process called transpiration where plants absorb water into its roots where the water travels up through the plant and is released through the underside of the leaves through small holes, acting as a natural air conditioner. The presence of vegetation helps reduce the temperature increase from the Urban Heat Island effect because of transpiration which helps with cooling the surrounding area of the vegetation down.
+		</p>
+		<p>In order to investigate the areas of Greater Melbourne experiencing significant increases in temperature because of the Urban Heat Island effect and the presence of vegetation in said areas, these interactive maps provided will assist with investigating the increase in temperature within Greater Melbourne by Local Government Area (LGA) using government sourced data. Other maps that are also provided are the percentage of tree cover by Local Government Area and by region within Greater Melbourne and maps that illustrate the Heat Vulnerability Index (HVI) of Greater Melbourne within years 2014 and 2018. A Heat Vulnerability Index of 1 indicates the area has low exposure to the sun’s energy, low sensitivity, or higher adaptive capacity to the temperature increase while 5 indicates high exposure, high sensitivity, or low adaptive capacity to the increasing temperature.
+		</p>
+	</div>
+	<div class="bar" id="glossary"><h3>Glossary and helpful terms</h3></div>
+	<div class="imaptext">
+		<p>
+  			<ul>
+				<li>Heat Vulnerability Index(HVI): Numerical identification that indicates which areas are most vulnerable to the increase in heat island effect. It consists of three indicators:</li>
+					<ul>
+						<li>Heat Exposure</li>
+						<li>Sensitivity to heat</li>
+						<li>Adaptive capability</li>
+					</ul>
+				<li>Vulnerability ratings are determined by the sum of the aggregated indicators and are scaled from 1 to 5: </li>
+					<li>(1 = low vulnerability, 5 = high vulnerability).</li>
+				<li>Urban Heat Island: Urban/metropolitan areas that have a higher above average temperature due to the greater generation, absoprtion and retention of heat due to human activity and man-made structures.</li>
+				<li>Vegetation Cover: Amount of plants and trees that cover the physical surface of the Earth.</li>
+				<li>Urban Tree Cover Percentage: When the prescence of urban green infrastructure such as trees provide natural shade over man-made structures absorb heat, particularly hard and dark-coloured surfaces such as roads and pavement.</li>
+  			</ul>
+		</p>
+	</div>
+	<div class="bar"><h3>Further reading related to urban heat can be accessed by clicking the left picture while the dashboard in full screen can be accessed on the right picture</h3></div>
+	<div class="fadingimagegridrows" style="display: flex">
+		<div class="container">	
+		  <a href="https://www.planning.vic.gov.au/policy-and-strategy/planning-for-melbourne/plan-melbourne/cooling-greening-melbourne/mapping-and-analysis-of-vegetation,-heat-and-land-use"  target="_blank">
+				<h1 class="fadetext">Vegetation and Urban Heat data and reports here</h1>
+			</a>
+		  <a href="https://www.planning.vic.gov.au/policy-and-strategy/planning-for-melbourne/plan-melbourne/cooling-greening-melbourne/mapping-and-analysis-of-vegetation,-heat-and-land-use"  target="_blank">
+				<img src="planningvictoriadata.jpg" alt="Planning Victoria UHI Data" class="imagegrid">
+			</a>
+		</div>
+		<div class=	"container">
+		  <a href="https://arcg.is/HHCWD"  target="_blank">
+				<h1 class="fadetext">Full screen view of dashboard here</h1>
+			</a>
+		  <a href="https://arcg.is/HHCWD"  target="_blank">
+				<img src="dashboard.png" alt="Dashboard" class="imagegrid">
+			</a>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+<script> //Code for opening and closing sidebar 
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>

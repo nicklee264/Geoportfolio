@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Major Project</title> <!--Title of page in browser-->
+	<link rel="stylesheet" href="assignmentcss.css">
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+
+    <!--Title of page-->
+    <div class="pagetitle">
+        <span class="title-ul">Geospatial Major Project</span>
+    </div>
+	<div class="academic-intro">
+		The Geospatial Major Project is a year-long project that occurs in the final year of the geospatial science/surveying degree. The project is split up into two components:
+		<ol>
+			<li>Geospatial Major Project A: Creating the proposal and researching the proposed topic</li>
+			<li>Geospatial Major Project B: Gathering data, results and writing up the report</li>
+		</ol>
+		<p>
+			The topic that my project will be covering is mapping the flesh-footed shearwater across the Recherche archipelago using remote sensing and species distribution modelling
+			and I am supervised by both Mariela Soto-Berelov and Simon Jones.
+		</p>
+		<p>
+			The project involves using the distribution modelling program called MAXENT to determine the distribution of the birds based on points the birds have been sighted
+			from literature and from data obtained from the Recherche archipelago by Jennifer Lavers (Univeristy of Tasmania). The software that I have used in the assignment
+			has been ArcMap and QGIS to create feature classes of the points and coordinates the birds have been sighted and to crop and extract raster datasets of independent
+			variables that can affect the distribution, being the temperature and rainfall of the archipelago obtained at WorldClim.
+		</p>
+		<p>
+			Below is the poster that I have created as part of my proposal for Major Project A.
+		</p>
+		<p>As this page was created in September 2022, I have yet to finish Major Project B, so this page will only cover Major Project A.</p>
+	</div>	
+	<div class="bar"><h3>Major Project A Poster</h3></div>
+	<img src="Academic-Gallery/Major-Project-A.png" class="major-project">
+    <div class="footer"> <!--Start of footer-->
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div> <!--End of footer-->
+</body>
+<script> //Code for opening and closing sidebar 
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>

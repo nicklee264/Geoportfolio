@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home Page</title>
+	<link rel="stylesheet" href="assignmentcss.css">
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+	<div class="mapbgdiv">
+		<img src="mapwelcomemod.jpg" alt="map" class="mapbg">
+		<div class="title">
+			<h1>RMIT Professional Practice: Geoportfolio</h1>
+			<h2>Nicholas Lee (s3785054)</h2>
+		</div>
+	</div>
+	<div class="intro bar"><h2>Introduction to the website and the author</h2></div>
+	<div class="about">This website is the geoportfolio of Nicholas Lee which was made for the subject Professional Practice (GEOM2116). The website entails
+		information that is academically and profesionally related to the field of geospatial science
+		<p>
+		A brief introduction about myself is that I am born and raised in Melbourne, Australia and as of September 2022, I am in my fourth and final year of the 
+		Bachelor of Science (Geospatial Science) (Honours) course. My geospatial-related interests is working with remote sensing data, collection and analysis of
+		aerial-captured imagery, distribution modelling and creating 3D generations of models using spatial data. My current geospatial projects involve distribution 
+		modelling of the flesh-footed shearwater bird species in the Recherche archipelago and assisting with the potential generation of a basic Digital Twin of
+		Honiara using open-source data and programs.
+		</p>
+		<p>
+		My own personal hobbies include jogging, model-making (especially Gunpla!), cooking and baking! More detailed information can be found in the About page!
+		</p>	
+	</div>
+	<div class="bar"><h2>Useful website links by hovering the mouse over the images below</h2></div>
+	<div class="fadingimagegridrows" style="display: flex">
+		<div class="container">	
+			<a href="AcademicWork.html">
+				<h1 class="fadetext">Click here to see my academic portfolio!</h1>
+			</a>
+			<a href="AcademicWork.html"> 
+				<img src="academicgeospatialwork.jpg" alt="academic" class="imagegrid">
+			</a>
+		</div>
+		<div class=	"container">
+			<a href="IndustryExperience.html">
+				<h1 class="fadetext">Click here to see my industry experience!</h1>
+			</a>
+				<a href="IndustryExperience.html">
+				<img src="industryoffice.jpg" alt="campus" class="imagegrid">
+			</a>
+		</div>
+	</div>
+	<div class="fadingimagegridrows" style="display: flex">
+		<div class="container">	
+			<a href="https://www.rmit.edu.au/about/schools-colleges/science"  target="_blank">
+				<h1 class="fadetext">Click here for RMIT's School of Science page!</h1>
+			</a>
+			<a href="https://www.rmit.edu.au/about/schools-colleges/science"  target="_blank">
+				<img src="schoolofscience.jpg" alt="school of science" class="imagegrid">
+			</a>
+		</div>
+		<div class=	"container">
+			<a href="https://www.rmit.edu.au/"  target="_blank">
+				<h1 class="fadetext">Click here for RMIT's home page!</h1>
+			</a>
+				<a href="https://www.rmit.edu.au/"  target="_blank">
+				<img src="rmitcampus.jpg" alt="campus" class="imagegrid">
+			</a>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+<script> //Code for opening and closing sidebar 
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>

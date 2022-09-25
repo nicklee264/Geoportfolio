@@ -1,0 +1,249 @@
+<!doctype html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tourism Map</title>
+	<link rel="stylesheet" href="assignmentcss.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+  	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+	<script src="jquery-2.1.1.min.js"></script> 
+	<style>
+    	#integratedmap{ width: 900px; height: 500px; margin: auto;}
+  	</style>
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+
+<body>
+	<!--Start of header-->
+	<div id="sidebar" class="sidebar-animate-open" style="display:none"> <!--MUST BE AT TOP OF DOCUMENT-->
+		<button onclick="close_sidebar()" class="sidebar-menu-button close-sidebar-button">&times;</button>
+		<a href="index.html" class="sidebar-menu-button mainbutton">Home</a>
+		<a href="AboutPage.html" class="sidebar-menu-button mainbutton">About</a>
+		<a href="IndustryExperience.html" class="sidebar-menu-button mainbutton">Industry Experience</a>
+		<a class="sidebar-menu-button active mainbutton" onclick="DropdownFunc">Academic Activity &#9660;</a>
+			<div id="dropdownlist">
+				<a href="AcademicWork.html" class="sidebar-menu-button dropdown-button">Overview</a>
+				<a href="MajorProject.html" class="sidebar-menu-button dropdown-button">Geospatial Major Project</a>
+				<a href="AGT.html"class="sidebar-menu-button dropdown-button">Applied Geospatial Techniques</a>
+				<a href="AdvSIS.html"class="sidebar-menu-button dropdown-button">Advanced SIS</a>
+				<a href="Cartography.html" class="sidebar-menu-button dropdown-button">Cartography</a>
+				<a href="DistributedMapping.html" class="sidebar-menu-button dropdown-button">Distributed Mapping</a>
+				<a href="UAS.html" class="sidebar-menu-button dropdown-button">UAS Operations</a>
+			</div>
+		<a href="Credits.html" class="sidebar-menu-button mainbutton">Acknowledgements</a>
+		<div class="other-sidebar-info">
+			<table class="sidebar-contact-table"> 
+				<tr>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank"><img src="linkedin.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://au.linkedin.com/in/nicholas-lee-097a52230" target="_blank">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank"><img src="twitter.png" class="sidebar-images"></a>
+					</td>
+					<td>
+						<a href="https://twitter.com/RMIT" target="_blank">Twitter</a>
+					</td>
+				</tr>
+			</table>
+			<img src="rmitlogo.png" alt="rmit" class="rmit-NEW">
+		</div>
+	</div>
+	<div class="header">
+		<button class="sidebar-menu-button open-sidebar-button" onclick="open_sidebar()">&#9776;</button>
+	</div>
+	<!--End of header-->
+	<div class="pagetitle">
+        <span class="title-ul">Integrated Map of Melbourne City</span>
+    </div>
+	
+	<div class="bar"><h3>How to use the map</h3></div>
+	<div class="imaptext">
+		<p>The map below is completely interactive, using clickable symbols to visually indicate what the landmark is supposed to be. Clicking the symbols will bring up the name and an image of the given location. 
+		</p>
+		<p><b><u>Instructions to using the map:</u></b>
+  			<ul>
+				<li>To zoom out: Either press the minus symbol in the top left corner of the map <u><i>or</i></u> scroll the mouse wheel downwards</li>
+				<li>To zoom in: Press the plus symbol in the top left corner of the map <u><i>or</i></u> scroll the mouse wheel upwards</li>
+				<li>To move around the map: Click and drag the mouse <u><i>or</i></u> use the arrow keys to move around the map</li>
+				<li>Interacting with symbols: Clcking a symbol will bring up the name and image along with a brief description of the location of interest.</li>
+  			</ul>
+		</p>
+	</div>
+	<div class="bar"><h2>Interactive Map of Melbourne City.</h2></div>
+  	<div id="integratedmap"></div>
+	
+
+<script>
+var map = L.map('integratedmap').setView([-37.813527, 144.965633], 15);
+	 //map
+	L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+	}).addTo(map);
+
+//Icon for universities
+var universityicon = L.icon({
+    iconUrl: 'uniicon.png',
+    iconSize:     [30, 30], // size of the icon
+});
+var trainstation = L.icon({
+    iconUrl: 'trainstation.png',
+    iconSize:     [30, 40], // size of the icon
+});
+var touristicon = L.icon({
+    iconUrl: 'touristspot.png',
+    iconSize:     [40, 40], // size of the icon
+});
+//University markers
+	var rmitcc = '<b>RMIT University City Campus</b><br><img src="https://live.staticflickr.com/21/28371110_612ff58bec_q.jpg"><br>A univeristy located in the heart of Melbourne, RMIT is a very well known university with students frequently seen coming and going from the campus. For its many facilities and close proximity to food, third-party individuals and groups are known to use the lecture halls and libraries at RMIT such as ATAR Notes and their lectures, and students from other universities.'
+	L.marker([-37.8081201, 144.9622309], {icon: universityicon}).addTo(map)
+		.bindPopup(rmitcc, {minWidth:150})
+	
+	var unimelb = '<b>Melbourne University</b><br><img src="https://live.staticflickr.com/3173/2805942378_19065b8420_q.jpg"><br>A university rather far from the city. If a tourist accidentally finds themself at Melbourne Univeristy... They might have gone a little too far away!'
+	L.marker([-37.798549, 144.960116], {icon: universityicon}).addTo(map)
+		.bindPopup(unimelb, {minWidth:150})
+//Train station markers
+	var flindersstreetstation= '<b>Flinders Street Station</b><br><img src="https://live.staticflickr.com/5684/23417205706_32a9415bc2_q.jpg"><br>A historical building that existed since 1854, Flinders Street Station is still operational as of today, known for its many clocks that decorate the entrance. Take caution when frequenting Flinders Street Station during busy hours.'
+	L.marker([-37.817921, 144.967143], {icon: trainstation}).addTo(map)
+		.bindPopup(flindersstreetstation, {minWidth:150})
+	
+	var southerncrossstation= '<b>Southern Cross Station</b><br><img src="https://live.staticflickr.com/65535/49260027068_5ef548c6c8_q.jpg"><br>A large railway station close to Docklands, the Southern Cross Station provides transport within metropolitan and regional Melbourne, and even interstate travel. For those who want to visit or leave the city, the Southern Cross Station is the go-to place for travelling around Melbourne and even Victoria.'
+	L.marker([-37.818285, 144.952489], {icon: trainstation}).addTo(map)
+		.bindPopup(southerncrossstation, {minWidth:150})
+	
+	var parliamentstation= '<b>Parliament Station</b><br><img src="https://live.staticflickr.com/6212/6866660930_427a566784_q.jpg"><br>A railway station underneath the Parliament House of Victoria, the northern exit will take you to the junction of Spring, Lonsdale and Nicholson Street while the southern exit will give you quick access to the intersection of Spring and Collins Street.'
+	L.marker([-37.809507, 144.972302], {icon: trainstation}).addTo(map)
+		.bindPopup(parliamentstation, {minWidth:150})
+	
+	var melbcentralstation= '<b>Melbourne Central Station</b><br><img src="https://live.staticflickr.com/5612/15819343415_fc595893c5_q.jpg"><br>Located in the basement of Melbourne Central Shopping Centre, this train station is often frequented by students of RMIT. For those who like to shop, getting off at Melbourne Central Station will be your number one stop!'
+	L.marker([-37.810167, 144.963804], {icon: trainstation}).addTo(map)
+		.bindPopup(melbcentralstation, {minWidth:150})
+//Tourist attractions
+	var fedsquare= '<b>Federation Square</b><br><img src="https://live.staticflickr.com/6113/6286722266_e7718b7bb2_q.jpg"><br>Just across the road from Flinders Street Station, the perfect place for tourists to visit for its visitor centre, ACMI, the National Gallery of Victoria and the public events that happen frequently.'
+	L.marker([-37.817802, 144.968963], {icon: touristicon}).addTo(map)
+		.bindPopup(fedsquare, {minWidth:150})
+
+	var melbartscentre= '<b>Melbourne Arts Centre</b><br><img src="https://live.staticflickr.com/7663/17110678380_d67d9fcda5_q.jpg"><br>A large performing arts centre identified by its giant spire, the performing arts centre is home to the 2,661 seat Hamer Hall and the outdoor Sidney Myer Music Bowl. If performing arts is your thing, the Melbourne Arts Centre is a place not to miss!'
+	L.marker([-37.820118, 144.968002], {icon: touristicon}).addTo(map)
+		.bindPopup(melbartscentre, {minWidth:150})
+	
+	var melbtownhall = '<b>Melbourne Town Hall</b><br><img src="https://live.staticflickr.com/4641/39119603311_25834259ef_q.jpg"><br>Existing since 1867, the Town Hall is a large heritage building used for multiple purposes such as concerts, plays, exhibitions and even tours about the history of the Town Hall. Home to its historical giant organ, the Town Hall is definitely a point of interest for those interested in the history of Melbourne.'
+	L.marker([-37.815006, 144.966983], {icon: touristicon}).addTo(map)
+		.bindPopup(melbtownhall, {minWidth:150})
+	
+	var melbcentral = '<b>Melbourne Central</b><br><img src="https://live.staticflickr.com/2776/4389628248_89c0e2be5b_q.jpg"><br>A large shopping complex within the heart of Melbourne, Melbourne Central is home to numerous shops that are not limited to supermarkets, a food court, clothes, make-up and electronics on the lower floors while on the upper floors, there are restaurants, bars and even an arcade and a cinema. Melbourne Central is home to its famous clock tower and on the ground floor at the bottom of the clock tower, there is the occasional live performance.'
+	L.marker([-37.810264, 144.962799], {icon: touristicon}).addTo(map)
+		.bindPopup(melbcentral, {minWidth:150})
+	
+	var marvelstadium = '<b>Marvel Stadium</b><br><img src="https://live.staticflickr.com/2688/4484880563_8d73d7338b_q.jpg"><br>Formerly known as Etihad Stadium, Marvel Stadium is a giant sports and entertainment stadium known for its retractable roof and hosting matches of cricket, soccer, rugby and Ausralian Football League(AFL). Located in Docklands, access to Marvel Stadium is more than possible by getting off at Southern Cross Station. For those who are fans of sports, Marvel Stadium is definitely a must-see spot to catch the game at!'
+	L.marker([-37.816186, 144.947500], {icon: touristicon}).addTo(map)
+		.bindPopup(marvelstadium, {minWidth:150})
+	
+	var queenvicmarket = '<b>Queen Victoria Market</b><br><img src="https://live.staticflickr.com/65535/47789475311_bc41203ab0_q.jpg"><br>The Queen Victoria Market is seven hectares worth of shops and officially opened in 1878. The Queen Victoria Market is the perfect place to buy some fresh produce and groceries made by the locals alongside fresh coffee and delicious food for those feeling peckish. Providing an authentic shopping exerpience in the heart of Melbourne, this market is definitely a place to visit to experience the products of Victorian locals.'
+	L.marker([-37.807571, 144.956746], {icon: touristicon}).addTo(map)
+		.bindPopup(queenvicmarket, {minWidth:150})
+	
+	var statelibrary = '<b>State Library Victoria</b><br><img src="https://live.staticflickr.com/65535/48071731447_4ecfeb470b_q.jpg"><br>For those who are a fan of reading or just want to have some quiet time, the State Library is definitely a place to satisfy your thirst for knowledge. With over two million books available alongside masses of audio, digital and video material, the State Library also offers guided tours about the history of the library and the methods of how older manuscripts are maintained.'
+	L.marker([-37.809650, 144.965102], {icon: touristicon}).addTo(map)
+		.bindPopup(statelibrary, {minWidth:150})
+
+	var sealife = '<b>Sea Life Aquarium</b><br><img src="https://live.staticflickr.com/7421/26806649224_d92896640c_q.jpg"><br>Looking for something different from the usual shops and buildings in the city? If so, then Sea Life Aquarium is the perfect place to visit! Only five minutes away from both the Southern Cross and Flindres Street Station, Sea Life is a great place to visit to learn more about the aquatic animals living in the ocean. Perfect place to visit for families, Sea Life can be enjoyed by everyone, regardless of age!'
+	L.marker([-37.820474, 144.958534], {icon: touristicon}).addTo(map)
+		.bindPopup(sealife, {minWidth:150})
+</script>
+	
+	<div class="bar">
+		<h3>Legend</h3>		
+	</div>
+	<div class="imaptext">
+		<table class="imaplegend">
+			<tr>
+				<th><img src="touristspot.png" alt="Touristspoticon" class="imaplegendimages"></th>
+				<th>Tourist Attraction/Point of Interest</th>
+			</tr>
+			<tr>	
+				<th><img src="uniicon.png" alt="universityicon" class="imaplegendimages"></th>
+				<th>Academic Institution</th>
+			</tr>
+			<tr>
+				<th><img src="trainstation.png" alt="trainstationicon" class="imaplegendimages"></th>
+				<th>Train Station</th>
+			</tr>
+
+		</table>	
+	</div>
+	<div class="bar"><h3>About the map</h3></div>
+	<div class="imaptext">
+		<p>Melbourne, ranked the most livable city between 2011 to 2017 is well known for its multiculturality. Because of this attribute,
+			Melbourne attracts many tourists domestically and internationally with more than two million international visitors and ten million domestic travellers visiting Melbourne in the year 2019. However, this would mean that out of the combined total of over twelve million travellers touring Melbourne, there will inevitably be at least one traveller who either gets easily lost within the city, unsure of which landmarks to visit, and sometimes both.
+		</p>
+		<p>In order to accommodate towards the tourists who would most likely face these issues, this interactive map will provide the locations of significant landmarks found within the City of Melbourne along with a short description about what to expect at each location.
+		</p>
+	</div>
+	<div class="bar"><h3>More information about tourism and public transport can be accessed by clicking the pictures below</h3></div>
+	<div class="fadingimagegridrows" style="display: flex">
+		<div class="container">	
+		  <a href="https://whatson.melbourne.vic.gov.au/visitor-info"  target="_blank">
+				<h1 class="fadetext">Information for what's on in Melbourne here!</h1>
+			</a>
+		  <a href="https://whatson.melbourne.vic.gov.au/visitor-info"  target="_blank">
+				<img src="tourismmelbourne.jpg" alt="Tourism in Melbourne" class="imagegrid">
+			</a>
+		</div>
+		<div class=	"container">
+		  <a href="https://www.melbourne.vic.gov.au/parking-and-transport/public-transport/Pages/public-transport.aspx"  target="_blank">
+				<h1 class="fadetext">Melbourne's public transport information here!</h1>
+			</a>
+		  <a href="https://www.melbourne.vic.gov.au/parking-and-transport/public-transport/Pages/public-transport.aspx"  target="_blank">
+				<img src="ptvmelbourne.jpg" alt="ptv" class="imagegrid">
+			</a>
+		</div>
+	</div>
+
+
+	<div class="footer">
+		<div class="compilationinformation">
+			<b>Compilation information</b>
+			<br>Website made in Adobe Dreamweaver.
+			<br>HTML and CSS code written by Nicholas Lee(2022) as part of undergraduate Professional Practice course(GEOM2116).
+		</div>
+		<table class="contacttable">
+			<caption><h2>Contact Information</h2></caption>
+			<tr>
+				<th><img src="mappin.png" alt="pointer" class="contactimages"></th>
+				<th><img src="mail.png" alt="email" class="contactimages"></th>
+				<th><img src="phone.png" alt="phone" class="contactimages"></th>
+			</tr>
+			<tr>
+				<th>
+					RMIT City Campus Address:
+					<br>124 La Trobe St, Melbourne VIC 3000</th>
+				<th>
+					Email Nicholas Lee here:
+					<br><a href = "mailto:s3785054@student.rmit.edu.au">s3785054@student.rmit.edu.au</a>
+				</th>
+				<th>RMIT university landline:
+					<br>(03) 9925 2000
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+<script>
+    function open_sidebar() {
+      document.getElementById("sidebar").style.display = "block";
+    }
+    function close_sidebar() {
+      document.getElementById("sidebar").style.display = "none";
+    }
+</script>
+</html>
